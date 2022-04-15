@@ -1,6 +1,6 @@
 package users
 
-type user struct {
+type userData struct {
 	id                 int
 	nroSocio           string
 	nombres            string
@@ -15,17 +15,17 @@ type user struct {
 	estadoCivil        string
 	Telefono           string
 	Instruccion        string
-	Otros              []OtherData
-	Ubicacion          Address
+	Otros              []userOtherData
+	Ubicacion          userAddress
 }
-type Address struct {
+type userAddress struct {
 	Provincia string
 	Canton    string
 	Parroquia string
 	Direccion string
 }
 
-type OtherData struct {
+type userOtherData struct {
 	name        string
 	description string
 }
