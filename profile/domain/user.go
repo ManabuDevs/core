@@ -1,4 +1,4 @@
-package users
+package profile
 
 type userData struct {
 	id                 int
