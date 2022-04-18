@@ -1,31 +1,22 @@
 package users
 
-type userData struct {
-	id                 int
-	nroSocio           string
-	nombres            string
-	apellidos          string
-	tipoIdentificacion string
-	Nacionalidad       string
-	FechaNacimiento    string
-	Edad               int
-	FechaIngreso       string
-	actividadEconomica string
-	genero             string
-	estadoCivil        string
-	Telefono           string
-	Instruccion        string
-	Otros              []userOtherData
-	Ubicacion          userAddress
-}
-type userAddress struct {
-	Provincia string
-	Canton    string
-	Parroquia string
-	Direccion string
+type user struct {
+	id       int
+	name     string
+	username string
+	password string
+	GroupID  []group
 }
 
-type userOtherData struct {
+type group struct {
+	id          int
+	name        string
+	description string
+	permissions []permissions
+}
+
+type permissions struct {
+	id          int
 	name        string
 	description string
 }
