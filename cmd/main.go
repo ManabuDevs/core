@@ -7,5 +7,5 @@ import (
 var start = server.StartServer
 
 func main() {
-	start().Run()
+	start([]string{"Crimson", "Red", "Ruby", "Maroon"}).Run()
 }
