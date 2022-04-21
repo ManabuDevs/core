@@ -1,6 +1,10 @@
 package server
 
-import "github.com/gin-gonic/gin"
+import (
+	users "sabasy/users/routes"
+
+	"github.com/gin-gonic/gin"
+)
 
 var (
 	engineGin = gin.New
@@ -12,17 +16,14 @@ func NewServer(server *gin.Engine) {
 	server.Run(":3000")
 }
 
-func StartServer(routes []string) *gin.Engine {
+func StartServer() *gin.Engine {
 	//Create server
 	serverHTTP := engineGin()
 	serverHTTP.Use(gin.Recovery())
 
 	//set routes
-	setRoutes(serverHTTP)
+
+	users.Routes(serverHTTP)
 	run(serverHTTP)
 	return serverHTTP
-}
-
-setRoutes(router *gin.Engine){
-	router.GET("/health",fmt.Println("health") )
 }
