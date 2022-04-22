@@ -22,8 +22,8 @@ func StartServer() *gin.Engine {
 	serverHTTP.Use(gin.Recovery())
 
 	//set routes
-
 	users.Routes(serverHTTP)
+
 	run(serverHTTP)
 	return serverHTTP
 }
