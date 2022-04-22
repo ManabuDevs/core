@@ -1,7 +1,7 @@
 package users
 
 import (
-	"net/http"
+	users "sabasy/users/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,12 +9,6 @@ import (
 func Routes(route *gin.Engine) {
 	user := route.Group("/user")
 	{
-		user.GET("/test", FindAll)
+		user.GET("/create", users.UserCreate)
 	}
-}
-
-func FindAll(c *gin.Context) {
-
-	c.JSON(http.StatusOK, "{}")
-
 }
