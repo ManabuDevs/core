@@ -11,9 +11,9 @@ func UserCreate(c *gin.Context) {
 	c.JSON(http.StatusOK, "{}")
 }
 
-func UserUpdate()
+/*func UserUpdate()
 func UserDelete()
 
 func UserGetByID()
 func UserGetAll()
-func UserGetByFilterData()
+func UserGetByFilterData()*/
