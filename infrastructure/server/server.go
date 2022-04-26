@@ -16,14 +16,14 @@ func NewServer(server *gin.Engine) {
 	server.Run(":3000")
 }
 
-func StartServer() *gin.Engine {
+func StartServer(routes []string) *gin.Engine {
 	//Create server
 	serverHTTP := engineGin()
 	serverHTTP.Use(gin.Recovery())
 
 	//set routes
-	users.Routes(serverHTTP)
 
+	setRoutes(serverHTTP)
 	run(serverHTTP)
 	return serverHTTP
 }
