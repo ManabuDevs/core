@@ -3,7 +3,11 @@ package dbconfig
 import (
 	"database/sql"
 	"fmt"
+	"log"
+	"os"
 	"sync"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 var (
@@ -29,7 +33,7 @@ func (r ConnectionDB) GetConnect() *sql.DB {
 
 func InstanceDB() *ConnectionDB {
 	once.Do(func() {
-		connect, err := ConnectDB("sqlite", "./test")
+		connect, err := ConnectDB("sqlite3", "./test.db")
 		if err != nil {
 			panic(fmt.Sprintf("Don´t connection with DB: [%v]", err))
 		}
@@ -43,3 +47,26 @@ func InstanceDB() *ConnectionDB {
 	})
 	return instance
 }
+
+func CreateDatabase() {
+	if _, err := os.Stat("./test.db"); os.IsNotExist(err) {
+		file, err := os.Create("test.db") // Create SQLite file
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		file.Close()
+		log.Println("sqlite-database.db created")
+	}
+}
+
+/*
+file, err := os.Create("sqlite-database.db") // Create SQLite file
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		file.Close()
+		log.Println("sqlite-database.db created")
+
+		sqliteDatabase, _ := sql.Open("sqlite3", "./sqlite-database.db") // Open the created SQLite File
+		defer sqliteDatabase.Close()
+*/
