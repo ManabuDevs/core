@@ -1,18 +1,17 @@
 package main
 
 import (
-	dbconfig "sabasy/infrastructure/database"
-
-	"fmt"
+	"sabasy/infrastructure/dbconfig"
 	"sabasy/infrastructure/server"
 )
 
-var start = server.StartServer
+var (
+	start    = server.StartServer
+	createDB = dbconfig.CreateDatabase
+)
 
 func main() {
-	dbconfig.CreateDatabase()
-	a := dbconfig.InstanceDB().GetConnect()
-	fmt.Println(a)
 
+	createDB()
 	start().Run()
 }
