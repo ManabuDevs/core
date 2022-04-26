@@ -1,7 +1,7 @@
 package users
 
 /*users functions*/
-func PermissionCreate() {
+/*func PermissionCreate() {
 	//leer datos de entrada
 	//procesar los datos de entrada
 	//validar token
@@ -13,4 +13,4 @@ func PermissionUpdate()
 func PermissionDelete()
 
 func PermissionGetByID()
-func PermissionGetAll()
+func PermissionGetAll()*/
