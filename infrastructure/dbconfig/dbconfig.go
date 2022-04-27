@@ -58,15 +58,3 @@ func CreateDatabase() {
 		log.Println("sqlite-database.db created")
 	}
 }
-
-/*
-file, err := os.Create("sqlite-database.db") // Create SQLite file
-		if err != nil {
-			log.Fatal(err.Error())
-		}
-		file.Close()
-		log.Println("sqlite-database.db created")
-
-		sqliteDatabase, _ := sql.Open("sqlite3", "./sqlite-database.db") // Open the created SQLite File
-		defer sqliteDatabase.Close()
-*/
