@@ -1,24 +1,19 @@
-/*package sql
+package users
 
 import (
 	"database/sql"
-	"prdt-trnf-notifications-reports-operations/internal/core/domain"
-	"prdt-trnf-notifications-reports-operations/internal/core/ports"
-	"prdt-trnf-notifications-reports-operations/internal/utils/database"
-	"prdt-trnf-notifications-reports-operations/internal/utils/env"
-	"prdt-trnf-notifications-reports-operations/internal/utils/helper"
-
-	log "github.com/sirupsen/logrus"
+	users "sabasy/users/ports"
 )
 
-type reportClRepository struct {
+type userRepository struct {
 	db *sql.DB
 }
 
-func NewReportClRepository(db *sql.DB) ports.ReportClRepository {
-	return &reportClRepository{db: db}
+func NewUserClRepository(db *sql.DB) users.UserRepositories {
+	return &userRepository{db: db}
 }
 
+/*
 func (r reportClRepository) GetCl(yesterdayDate string) ([][]string, error) {
 	//fmt.Println("entra en la BD")
 	//define schemaDB attacth
