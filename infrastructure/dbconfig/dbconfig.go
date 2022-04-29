@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"sync"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -57,4 +58,48 @@ func CreateDatabase() {
 		file.Close()
 		log.Println("sqlite-database.db created")
 	}
+}
+
+var valueStringNil string
+
+func ParserQuery(rows *sql.Rows, dynamics map[string]string) (result []map[string]interface{}) {
+	for rows.Next() {
+		keys, _ := rows.Columns()
+		cols := make([]interface{}, len(keys))
+		for i := range keys {
+			cols[i] = &cols[i]
+		}
+		rows.Scan(cols...)
+
+		obj := make(map[string]interface{})
+		for i, key := range keys {
+			d := dynamics[key]
+			if d != "" {
+				obj[d] = ParseString(cols[i])
+			}
+		}
+		result = append(result, obj)
+	}
+	return
+}
+
+func parseArrayUInt8ToString(data []uint8) string {
+	if data != nil {
+		var valueContent strings.Builder
+		valueContent.Write(data)
+		return valueContent.String()
+	}
+	return valueStringNil
+}
+
+func ParseString(data interface{}) string {
+	if data != nil {
+		switch data.(type) {
+		case []uint8:
+			return parseArrayUInt8ToString(data.([]uint8))
+		default:
+			return fmt.Sprintf("%v", data)
+		}
+	}
+	return valueStringNil
 }

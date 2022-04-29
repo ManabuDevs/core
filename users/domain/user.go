@@ -1,22 +1,22 @@
 package users
 
-type user struct {
-	id       int
-	name     string
-	username string
-	password string
-	GroupID  []group
+type User struct {
+	Id       int
+	Name     string
+	Username string
+	Password string
+	GroupID  []Group
 }
 
-type group struct {
-	id          int
-	name        string
-	description string
-	permissions []permissions
+type Group struct {
+	Id          int
+	Name        string
+	Description string
+	Permissions []Permissions
 }
 
-type permissions struct {
-	id          int
-	name        string
-	description string
+type Permissions struct {
+	Id          int
+	Name        string
+	Description string
 }
