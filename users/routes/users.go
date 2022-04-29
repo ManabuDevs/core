@@ -9,6 +9,6 @@ import (
 func Routes(route *gin.Engine) {
 	user := route.Group("/user")
 	{
-		user.GET("/create", users.UserCreate)
+		user.POST("/create", users.UserCreate)
 	}
 }
