@@ -8,8 +8,12 @@ import (
 
 /*users functions*/
 func UserCreate(c *gin.Context) {
-	var x []string
-	c.JSON(http.StatusOK, x)
+
+	/*c.JSON(http.StatusOK, gin.H{
+		"hello": c.Query("id"),
+		"test":  c.PostForm("test"),
+	})*/
+	c.JSON(http.StatusOK, c.Request.Body)
 }
 
 /*func UserUpdate()
