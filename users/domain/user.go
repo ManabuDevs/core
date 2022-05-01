@@ -1,11 +1,11 @@
 package users
 
 type User struct {
-	Id       int
-	Name     string
-	Username string
-	Password string
-	GroupID  []Group
+	Id       int     `json:"id"`
+	Name     string  `json:"name"`
+	Username string  `json:"username"`
+	Password string  `json:"password"`
+	GroupID  []Group `json:"groupid"`
 }
 
 type Group struct {
