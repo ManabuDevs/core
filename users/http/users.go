@@ -5,9 +5,14 @@ import (
 	"net/http"
 	"sabasy/internal/dto"
 	domain "sabasy/users/domain"
+	users "sabasy/users/ports"
 
 	"github.com/gin-gonic/gin"
 )
+
+type userRepositories struct {
+	userRepos users.UserRepositories
+}
 
 /*users functions*/
 func UserCreate(c *gin.Context) {
