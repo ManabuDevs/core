@@ -46,7 +46,7 @@ func (u userRepository) GetUsers() ([][]string, error) {
 
 func (u userRepository) CreateUser(du *domain.User) (*domain.User, error) {
 	log.Println("creating a new patient")
-	res, err := u.db.Exec("insert into patient (first_name, last_name, address, phone, email) values (?,?,?,?,?)",
+	res, err := u.db.Exec(querys.UsersInsert,
 		du.Name, du.Username, du.Password, du.GroupID)
 
 	if err != nil {
