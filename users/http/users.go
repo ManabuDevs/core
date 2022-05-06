@@ -24,14 +24,14 @@ func UserCreate(c *gin.Context) {
 		fmt.Println(err.Error())
 	}
 
-	service.CreateUser(&requestBody)
+	t, _ := service.CreateUser(&requestBody)
 	//usersPorts.UserRepositories.CreateUser(requestBody)
 	/*c.JSON(http.StatusOK, gin.H{
 		"hello": c.Query("id"),
 		"test":  c.PostForm("test"),
 	})*/
 
-	response.Data = requestBody
+	response.Data = t
 	response.Status = "200"
 
 	c.JSON(http.StatusOK, response) //requestBody)
