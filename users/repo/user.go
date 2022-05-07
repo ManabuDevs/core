@@ -45,12 +45,12 @@ func (u userRepository) GetUsers() ([][]string, error) {
 }
 
 func (u userRepository) CreateUser(du *domain.User) (*domain.User, error) {
-	log.Println("creating a new patient")
+	log.Println("creating a new user")
 	res, err := u.db.Exec(querys.UsersInsert,
-		du.Name, du.Username, du.Password, du.GroupID)
+		du.Name, du.Username, du.Password, "du.GroupID")
 
 	if err != nil {
-		log.Printf("cannot save the patient, %s", err.Error())
+		log.Printf("cannot save the user, %s", err.Error())
 		return nil, err
 	}
 
