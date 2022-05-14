@@ -18,7 +18,3 @@ func NewUserService(repo usersPorts.UserRepositories) *serviceUser {
 func (s *serviceUser) CreateUser(user *domain.User) (*domain.User, error) {
 	return s.repoUser.CreateUser(user)
 }
-
-func (s *serviceUser) GetMassiveCl() ([][]string, error) {
-	return s.repoUser.GetUsers()
-}
