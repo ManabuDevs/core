@@ -13,6 +13,22 @@ import (
 )
 
 /*users functions*/
+func UserGetAll(c *gin.Context) {
+	var response dto.Request
+
+	repo := usersRepo.NewUserRepository(dbconfig.InstanceDB().GetConnect())
+	service := usersService.NewUserService(repo)
+
+	t, _ := service.GetUsers()
+
+	response.Data = t
+	response.Status = "200"
+
+	c.JSON(http.StatusOK, response)
+}
+
+//func UserGetByID()
+
 func UserCreate(c *gin.Context) {
 	var requestBody domain.User
 	var response dto.Request
@@ -39,7 +55,4 @@ func UserCreate(c *gin.Context) {
 
 /*func UserUpdate()
 func UserDelete()
-
-func UserGetByID()
-func UserGetAll()
 func UserGetByFilterData()*/

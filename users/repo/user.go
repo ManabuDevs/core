@@ -31,13 +31,20 @@ func (u userRepository) GetUsers() ([][]string, error) {
 
 		err := rows.Scan(
 			&userQuery.Id,
+			&userQuery.Name,
+			&userQuery.Password,
+			&userQuery.Username,
+			&userQuery.GroupID,
 		)
 		if err != nil {
 			log.Fatal(err)
 		}
-
+		//cambiar esto a un formato de domain multiple y no string
 		users = append(users, []string{
 			strconv.Itoa(userQuery.Id),
+			userQuery.Name,
+			userQuery.Password,
+			userQuery.Username,
 		})
 	}
 
