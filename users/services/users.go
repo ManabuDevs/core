@@ -19,6 +19,6 @@ func (s *serviceUser) CreateUser(user *domain.User) (*domain.User, error) {
 	return s.repoUser.CreateUser(user)
 }
 
-func (s *serviceUser) GetMassiveCl() ([][]string, error) {
+func (s *serviceUser) GetUsers() ([][]string, error) {
 	return s.repoUser.GetUsers()
 }
