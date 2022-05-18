@@ -51,6 +51,40 @@ func (u userRepository) GetUsers() ([][]string, error) {
 	return users, nil
 }
 
+func (u userRepository) GetUserByID(id string) ([][]string, error) {
+	var user [][]string
+
+	rows, err := u.db.Query(querys.UserGet, id)
+	if err != nil {
+		log.Printf("cannot execute select query %s", err.Error())
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var userQuery domain.User
+
+		err := rows.Scan(
+			&userQuery.Id,
+			&userQuery.Name,
+			&userQuery.Password,
+			&userQuery.Username,
+			&userQuery.GroupID,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+		//cambiar esto a un formato de domain multiple y no string
+		user = append(user, []string{
+			strconv.Itoa(userQuery.Id),
+			userQuery.Name,
+			userQuery.Password,
+			userQuery.Username,
+		})
+	}
+
+	return user, nil
+}
+
 func (u userRepository) CreateUser(du *domain.User) (*domain.User, error) {
 	log.Println("creating a new user")
 	res, err := u.db.Exec(querys.UsersInsert,
