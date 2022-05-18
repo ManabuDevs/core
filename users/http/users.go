@@ -27,7 +27,19 @@ func UserGetAll(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-//func UserGetByID()
+func UserGetByID(c *gin.Context) {
+	var response dto.Request
+
+	repo := usersRepo.NewUserRepository(dbconfig.InstanceDB().GetConnect())
+	service := usersService.NewUserService(repo)
+
+	t, _ := service.GetUserByID(c.Query("id"))
+
+	response.Data = t
+	response.Status = "200"
+
+	c.JSON(http.StatusOK, response)
+}
 
 func UserCreate(c *gin.Context) {
 	var requestBody domain.User
