@@ -35,6 +35,7 @@ func UserGetByID(c *gin.Context) {
 
 	t, _ := service.GetUserByID(c.Query("id"))
 
+	fmt.Println(c.Query("id"))
 	response.Data = t
 	response.Status = "200"
 
