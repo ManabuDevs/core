@@ -35,10 +35,15 @@ func UserGetByID(c *gin.Context) {
 
 	t, _ := service.GetUserByID(c.Param("user_id"))
 
-	fmt.Println(c.Query("id"))
-	response.Data = t
-	response.Status = "200"
+	//pasar a utils esta funcion
+	if len(t) > 0 {
+		response.Data = t
+		c.JSON(http.StatusOK, response)
+	} else {
+		response.Data = "no existe el id a buscar"
+	}
 
+	response.Status = "204" //esto tambien a utils con el de arriba
 	c.JSON(http.StatusOK, response)
 }
 

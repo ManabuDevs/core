@@ -2,7 +2,6 @@ package users
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"sabasy/internal/db-schema/querys"
 	domain "sabasy/users/domain"
@@ -82,7 +81,6 @@ func (u userRepository) GetUserByID(id string) ([][]string, error) {
 			userQuery.Username,
 		})
 	}
-	fmt.Println(user)
 	return user, nil
 }
 
