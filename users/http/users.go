@@ -33,7 +33,7 @@ func UserGetByID(c *gin.Context) {
 	repo := usersRepo.NewUserRepository(dbconfig.InstanceDB().GetConnect())
 	service := usersService.NewUserService(repo)
 
-	t, _ := service.GetUserByID(c.Query("id"))
+	t, _ := service.GetUserByID(c.Param("user_id"))
 
 	fmt.Println(c.Query("id"))
 	response.Data = t
