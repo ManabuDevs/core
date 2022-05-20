@@ -71,6 +71,18 @@ func UserCreate(c *gin.Context) {
 	c.JSON(http.StatusOK, response) //requestBody)
 }
 
+func UserDeleteByID(c *gin.Context) {
+	var response dto.Request
+
+	repo := usersRepo.NewUserRepository(dbconfig.InstanceDB().GetConnect())
+	service := usersService.NewUserService(repo)
+
+	t, _ := service.DeleteUserByID(c.Param("user_id"))
+
+	response.Data = t
+	response.Status = "200" //esto tambien a utils con el de arriba
+	c.JSON(http.StatusOK, response)
+}
+
 /*func UserUpdate()
-func UserDelete()
 func UserGetByFilterData()*/
