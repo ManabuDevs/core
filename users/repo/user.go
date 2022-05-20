@@ -2,6 +2,7 @@ package users
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"sabasy/internal/db-schema/querys"
 	domain "sabasy/users/domain"
@@ -107,11 +108,22 @@ func (u userRepository) CreateUser(du *domain.User) (*domain.User, error) {
 
 func (u userRepository) DeleteUserByID(id string) (bool, error) {
 
-	rows, err := u.db.Query(querys.UserDelete, id)
+	rows, err := u.db.Prepare(querys.UserDelete)
 	if err != nil {
-		log.Printf("cannot execute select query %s", err.Error())
+		log.Printf("cannot execute delete prepare query %s", err.Error())
 	}
 	defer rows.Close()
 
+	res, err := rows.Exec(id)
+	if err != nil {
+		log.Printf("cannot execute delete query %s", err.Error())
+	}
+
+	affected, err := res.RowsAffected()
+	if err != nil {
+		log.Printf("cannot affected row %s", err.Error())
+	}
+
+	fmt.Println(affected)
 	return true, nil
 }
