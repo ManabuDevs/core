@@ -104,3 +104,14 @@ func (u userRepository) CreateUser(du *domain.User) (*domain.User, error) {
 		GroupID:  du.GroupID,
 	}, nil
 }
+
+func (u userRepository) DeleteUserByID(id string) (bool, error) {
+
+	rows, err := u.db.Query(querys.UserDelete, id)
+	if err != nil {
+		log.Printf("cannot execute select query %s", err.Error())
+	}
+	defer rows.Close()
+
+	return true, nil
+}
