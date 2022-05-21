@@ -22,3 +22,11 @@ func (s *serviceUser) CreateUser(user *domain.User) (*domain.User, error) {
 func (s *serviceUser) GetUsers() ([][]string, error) {
 	return s.repoUser.GetUsers()
 }
+
+func (s *serviceUser) GetUserByID(id string) ([][]string, error) {
+	return s.repoUser.GetUserByID(id)
+}
+
+func (s *serviceUser) DeleteUserByID(id string) (bool, error) {
+	return s.repoUser.DeleteUserByID(id)
+}
